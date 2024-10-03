@@ -1,0 +1,28 @@
+services:
+  # Servicio para el servidor web y PHP
+  web:
+    build: 
+      context: .
+    ports:
+      - "8080:80"  # Mapea el puerto 80 del contenedor al puerto 8080 de tu máquina local
+    volumes:
+      - .:/var/www/html # Mapea el código de la aplicación a la carpeta del servidor Apache
+    depends_on:
+      - db  # Este servicio depende de que el servicio 'db' esté activo
+
+  # Servicio para la base de datos
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"  # Mapea el puerto 3306 del contenedor al puerto 3306 de tu máquina local
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword  # Cambia esto por una contraseña segura
+      MYSQL_DATABASE: app_db  # Nombre de la base de datos a crear
+      MYSQL_USER: user  # Usuario de la base de datos
+      MYSQL_PASSWORD: userpassword  # Contraseña del usuario de la base de datos
+    volumes:
+      - db_data:/var/lib/mysql  # Volumen persistente para los datos de la base de datos
+
+# Definición de volúmenes persistentes
+volumes:
+  db_data:
