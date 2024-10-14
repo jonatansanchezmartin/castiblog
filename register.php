@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 if(isset($_POST)){
 
     // Conexión a la base de datos
@@ -19,6 +16,8 @@ if(isset($_POST)){
     $email = isset($_POST["email"]) ? mysqli_real_escape_string ($db, trim($_POST["email"])) : false;
     $password = isset($_POST["password"]) ? mysqli_real_escape_string ($db, $_POST["password"]) : false;
 
+    $isValid = true;
+    
     // Array de errores
     $errors = [
         'name' => [],
@@ -27,34 +26,40 @@ if(isset($_POST)){
         'password' => [],
     ];
     
+    
     // Validar datos antes de guardarlos en la base de datos
 
     // Validar el nombre
     if(empty($name)){
-        $errors["name"][] = "El nombre esta vacío1";
+        $errors["name"][] = "El nombre esta vacío";
+        $isValid = false;
     }
 
     // Validar apellidos
     if(empty($lastName)){
-        $errors["lastName"][] = "El apellido está vacío1";
+        $errors["lastName"][] = "El apellido está vacío";
+        $isValid = false;
     }
 
     // Validar email
     if(empty($email)){
-        $errors["email"][] = "El email está vacío1";        
+        $errors["email"][] = "El email está vacío";
+        $isValid = false; 
     }else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-        $errors["email"][] = "El email no es válido1";      
+        $errors["email"][] = "El email no es válido";
+        $isValid = false;
     }
 
     // Validar contraseña
 
     if(empty($password)){
-        $errors["password"][] = "La contraseña está vacía1";
+        $errors["password"][] = "La contraseña está vacía";
+        $isValid = false;
     }
 
     $saveUser = false;
 
-    if(count($errors) == 0){
+    if($isValid){
         $saveUser = true;
 
         // Cifrar la contraseña
@@ -62,7 +67,7 @@ if(isset($_POST)){
         $passwordSafe = password_hash($password, PASSWORD_BCRYPT, ["cost"=>4]);
        
         // Insertar usuario en la tabla de usuarios de la BBDD
-        $sql = "INSERT INTO users (name, surname, password, email) VALUES ('$name', '$lastName', '$passwordSafe', '$email');";
+        $sql = "INSERT INTO users (name, last_name, password, email) VALUES ('$name', '$lastName', '$passwordSafe', '$email');";
         $saveUser = mysqli_query($db, $sql);
 
 

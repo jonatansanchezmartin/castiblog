@@ -65,6 +65,14 @@
                 </a>
             </li>
 
+            <?php if(isset($_SESSION["user"])){ ?>
+                <li>
+                    <a href="newEntry.php">
+                        Crear entrada
+                    </a>
+                </li>
+            <?php } ?>
+
         </ul>
 
 
