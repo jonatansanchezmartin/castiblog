@@ -4,7 +4,7 @@
    
     <!-- CAJA PRINCIPAL -->
 
-<div id="main">
+<div id="mainNewEntry">
     <h1>
         Crear entrada
     </h1>
@@ -21,6 +21,23 @@
             </label>
             
             <textarea name="content" id="content"></textarea>
+
+            <div class="categorySelection">
+                <label for="category">
+                    Elige la categoría
+                </label>
+
+                <select class="form-control" id="category" name="category">
+                    <option value="es">España</option>
+                    <option value="fr">Francia</option>
+                    <option value="uk">Reino Unido</option>
+                    <option value="it">Italia</option>
+                </select>
+
+            </div>
+
+            <br>
+
 
             <button type="submit" class="button">Nueva entrada</button>
         </form>

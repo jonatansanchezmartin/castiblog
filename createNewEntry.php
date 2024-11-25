@@ -13,9 +13,10 @@ if(isset($_POST)){
 
     $title = isset($_POST["title"]) ? mysqli_real_escape_string ($db, $_POST["title"]) : false;
     $content = isset($_POST["content"]) ? mysqli_real_escape_string ($db, $_POST["content"]) : false;
+    $category = isset($_POST["category"]) ? mysqli_real_escape_string ($db, $_POST["category"]) : false;
     
     // TODO Crear la tabla en DBeaver
-    $sql = "INSERT INTO posts (title, content) VALUES ('$title', '$content');";
+    $sql = "INSERT INTO posts (title, content, category) VALUES ('$title', '$content', '$category');";
     $savePost = mysqli_query($db, $sql);
 }
 
