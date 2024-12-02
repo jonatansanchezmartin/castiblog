@@ -8,50 +8,26 @@
     <h1>
         Últimas entradas
     </h1>
-    <article class="entrada">
-        <h2>
-            Título de mi entrada
-        </h2>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet purus cursus, fringilla justo aliquam, ullamcorper ligula. Aenean placerat nisi at mi maximus tempor. Nulla facilisi. Curabitur a purus metus. Proin vestibulum, dui vel fringilla tempus, diam justo efficitur felis, ac venenatis massa sapien ut nisl. Etiam tempus placerat elit ut sodales. Donec gravida turpis augue. Suspendisse ac nisi in nibh blandit feugiat a sed elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-        </p>
+    <?php
+    // All the PHP code
 
-    </article>
+    // 1) Get the posts from the database
 
-    <article class="entrada">
-        <h2>
-            Título de mi entrada
-        </h2>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet purus cursus, fringilla justo aliquam, ullamcorper ligula. Aenean placerat nisi at mi maximus tempor. Nulla facilisi. Curabitur a purus metus. Proin vestibulum, dui vel fringilla tempus, diam justo efficitur felis, ac venenatis massa sapien ut nisl. Etiam tempus placerat elit ut sodales. Donec gravida turpis augue. Suspendisse ac nisi in nibh blandit feugiat a sed elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-        </p>
+    $sql = "SELECT title, content, category FROM posts;";
+    $posts = mysqli_query($db, $sql);
 
-    </article>
-
-    <article class="entrada">
-        <h2>
-            Título de mi entrada
-        </h2>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet purus cursus, fringilla justo aliquam, ullamcorper ligula. Aenean placerat nisi at mi maximus tempor. Nulla facilisi. Curabitur a purus metus. Proin vestibulum, dui vel fringilla tempus, diam justo efficitur felis, ac venenatis massa sapien ut nisl. Etiam tempus placerat elit ut sodales. Donec gravida turpis augue. Suspendisse ac nisi in nibh blandit feugiat a sed elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-        </p>
-
-    </article>
-
-    <article class="entrada">
-        <h2>
-            Título de mi entrada
-        </h2>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet purus cursus, fringilla justo aliquam, ullamcorper ligula. Aenean placerat nisi at mi maximus tempor. Nulla facilisi. Curabitur a purus metus. Proin vestibulum, dui vel fringilla tempus, diam justo efficitur felis, ac venenatis massa sapien ut nisl. Etiam tempus placerat elit ut sodales. Donec gravida turpis augue. Suspendisse ac nisi in nibh blandit feugiat a sed elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-        </p>
-
-    </article>
-
-    <div id="seeAll">
-        <a href="">Ver todas las entradas</a>
-    </div>
-
+    // 2) Iterate over the posts to show in the page
+    while ($post = mysqli_fetch_assoc($posts))
+    { 
+        ?>
+        <article class="entrada">
+            <h2><?php echo $post['title']; ?></h2>
+            <span><?php echo $post['category']; ?></span>
+            <p><?php echo $post['content']; ?></p>
+        </article>
+        <?php 
+    }
+    ?>
 </div>
 
 

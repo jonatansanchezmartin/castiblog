@@ -28,10 +28,10 @@
                 </label>
 
                 <select class="form-control" id="category" name="category">
-                    <option value="es">España</option>
-                    <option value="fr">Francia</option>
-                    <option value="uk">Reino Unido</option>
-                    <option value="it">Italia</option>
+                    <option value="España">España</option>
+                    <option value="Francia">Francia</option>
+                    <option value="Reino Unido">Reino Unido</option>
+                    <option value="Italia">Italia</option>
                 </select>
 
             </div>
